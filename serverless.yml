@@ -1,0 +1,23 @@
+service: appsync-masterclass-backend
+
+frameworkVersion: '2'
+
+plugins:
+  - serverless-appsync-plugin
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+custom:
+  appSync:
+    - ${file(serverless.appsync-api.yml)}
+
+package:
+  exclude:
+  - package-lock.json
+  - package.json
+
+functions:
+  hello:
+    handler: handler.hello
